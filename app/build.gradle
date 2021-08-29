@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -27,7 +29,10 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = "1.8"
+    }
+    buildFeatures {
+        viewBinding = true
     }
 }
 
@@ -40,4 +45,19 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    implementation "androidx.constraintlayout:constraintlayout:2.1.0"
+    implementation "com.android.support.constraint:constraint-layout:2.0.4"
+
+    //Koin
+    implementation "io.insert-koin:koin-android:3.1.2"
+
+    // Firebase authentication
+    implementation 'com.google.firebase:firebase-auth-ktx:20.0.4'
+    implementation platform('com.google.firebase:firebase-bom:28.3.1')
+    implementation 'com.firebaseui:firebase-ui-auth:8.0.0'
+
+    // Architecture components
+    kapt "androidx.lifecycle:lifecycle-compiler:2.3.1"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.3.1"
 }
