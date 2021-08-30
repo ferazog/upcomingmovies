@@ -9,7 +9,7 @@ import com.firebase.ui.auth.AuthMethodPickerLayout
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.guerrero.upcomingmovies.R
-import com.guerrero.upcomingmovies.movies.MainActivity
+import com.guerrero.upcomingmovies.movies.MoviesActivity
 import com.guerrero.upcomingmovies.shared.SIGN_IN_RESULT_CODE
 import com.guerrero.upcomingmovies.shared.getTag
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -69,7 +69,7 @@ class AuthenticationActivity : AppCompatActivity() {
     }
 
     private fun navigateToWatchlistFragment() {
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, MoviesActivity::class.java)
         startActivity(intent)
         finish()
     }

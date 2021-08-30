@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/watchlistFragment"
         android:name="com.guerrero.upcomingmovies.movies.watchlist.WatchlistFragment"
-        android:label="fragment_watchlist"
+        android:label="@string/watchlist"
         tools:layout="@layout/fragment_watchlist" >
         <action
             android:id="@+id/action_watchlistFragment_to_upcomingListFragment"
@@ -17,6 +17,6 @@
     <fragment
         android:id="@+id/upcomingListFragment"
         android:name="com.guerrero.upcomingmovies.movies.upcominglist.UpcomingListFragment"
-        android:label="fragment_upcoming_list"
+        android:label="@string/upcoming_movies"
         tools:layout="@layout/fragment_upcoming_list" />
 </navigation>
