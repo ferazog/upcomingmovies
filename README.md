@@ -15,6 +15,17 @@ Android App that allows users to set reminders for the upcoming movies they do n
 
 5.  Show the details of a movie using coordinator layout.
 
+# Web API Key configuration
+The app is connected with the Movies Databse API using a `web_api_key` located in `local.properties` file.
+
+### Get a new API key
+To create a new `web_api_key` follow the steps of this link: https://developers.themoviedb.org/3/getting-started/authentication.
+
+### Add an API key to the project
+Add the key in the `local.properties` file in this form:
+```
+web_api_key = yourApiKey
+```
 
 # Features
 
