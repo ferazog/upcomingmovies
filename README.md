@@ -9,9 +9,9 @@ Android App that allows users to set reminders for the upcoming movies they do n
 
 2.  Request the list of upcoming movies from The Movie Database API using Retrofit.
 
-3.  Use Room to save and remove movies from the watchlist.
+3.  Use Room to store the watchlist.
 
-4.  Show a notification when a saved movie is releasing.
+4.  Show a notification when a saved movie is released.
 
 5.  Show the details of a movie using coordinator layout.
 
@@ -30,7 +30,6 @@ Android App that allows users to set reminders for the upcoming movies they do n
 ## Watchlist
 
 -   If the login is successful the app opens a MainActivity that hosts a navigation graph and the users are prompted to the Watchlist Fragment.
-
 
 -   When no movies are displayed, the app should show an image that invites the users to add a new movie.
 

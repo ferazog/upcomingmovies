@@ -4,9 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/ic_email.xml" value="0.13645833333333332" />
+        <entry key="app/src/main/res/drawable/ic_movie.xml" value="0.1359375" />
         <entry key="app/src/main/res/layout/activity_authentication.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.10572916666666667" />
+        <entry key="app/src/main/res/layout/fragment_upcoming_list.xml" value="0.15" />
+        <entry key="app/src/main/res/layout/fragment_watchlist.xml" value="0.25" />
         <entry key="app/src/main/res/layout/login_layout.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/upcoming_movie_layout.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/watchlist_movie_layout.xml" value="0.1" />
+        <entry key="app/src/main/res/menu/logout_menu.xml" value="0.23802083333333332" />
       </map>
     </option>
   </component>

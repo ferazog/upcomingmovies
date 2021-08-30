@@ -4,4 +4,10 @@
     <string name="sign_in_with_email">Sign in with email</string>
     <string name="sign_in_with_google">Sign in with Google</string>
     <string name="welcome_image_content_description">Welcome image</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_movie_button">Add movie button</string>
+    <string name="log_out">Log out</string>
+    <string name="no_movies">Add the movies\nyou do not want to miss!</string>
+    <string name="movie_poster">Movie poster</string>
+    <string name="release_date">Release date</string>
 </resources>

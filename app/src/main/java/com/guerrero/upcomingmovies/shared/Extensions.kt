@@ -1,4 +1,4 @@
-package com.guerrero.upcomingmovies.utils
+package com.guerrero.upcomingmovies.shared
 
 import android.app.Activity
 
