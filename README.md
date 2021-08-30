@@ -22,7 +22,7 @@ The app is connected with the Movies Databse API using a `web_api_key` located i
 To create a new `web_api_key` follow the steps of this link: https://developers.themoviedb.org/3/getting-started/authentication.
 
 ### Add an API key to the project
-Add the key in the `local.properties` file in this form:
+Add the key in the `local.properties` file like this:
 ```
 web_api_key = yourApiKey
 ```
