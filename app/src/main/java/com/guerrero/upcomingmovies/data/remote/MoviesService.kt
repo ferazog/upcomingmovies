@@ -9,6 +9,7 @@ interface MoviesService {
 
     @GET("movie/upcoming")
     suspend fun getUpcomingList(
-        @Query("api_key") apiKey: String = BuildConfig.WEB_API_KEY
+        @Query("api_key") apiKey: String = BuildConfig.WEB_API_KEY,
+        @Query("page") page: Int
     ): ApiGetUpcomingListResult
 }

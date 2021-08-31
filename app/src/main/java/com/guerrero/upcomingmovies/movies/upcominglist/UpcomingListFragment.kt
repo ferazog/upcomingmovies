@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.guerrero.upcomingmovies.databinding.FragmentUpcomingListBinding
 import com.guerrero.upcomingmovies.movies.MoviesViewModel
 import com.guerrero.upcomingmovies.shared.Movie
@@ -30,10 +31,10 @@ class UpcomingListFragment : Fragment(), UpcomingMovieClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupUpcomingListRecyclerView()
         moviesViewModel.run {
             observeUpcomingList()
             observeUpcomingListEvent()
-            requestUpcomingList("")
         }
     }
 
@@ -61,11 +62,8 @@ class UpcomingListFragment : Fragment(), UpcomingMovieClickListener {
 
     private fun observeUpcomingList() {
         moviesViewModel.getUpcomingListObservable().observe(viewLifecycleOwner, { upcomingList ->
-            binding.upcomingListRecyclerView.run {
-                layoutManager = GridLayoutManager(requireContext(), UPCOMING_GRID_SPAN_COUNT)
-                adapter = UpcomingListAdapter(this@UpcomingListFragment).apply {
-                    submitList(upcomingList)
-                }
+            with(binding.upcomingListRecyclerView) {
+                (adapter as? UpcomingListAdapter)?.submitList(upcomingList)
             }
         })
     }
@@ -74,5 +72,22 @@ class UpcomingListFragment : Fragment(), UpcomingMovieClickListener {
         val action = UpcomingListFragmentDirections
             .actionUpcomingListFragmentToMovieDetailsFragment(movie.id)
         view?.findNavController()?.navigate(action)
+    }
+
+    private fun setupUpcomingListRecyclerView() {
+        with(binding.upcomingListRecyclerView) {
+            layoutManager = GridLayoutManager(requireContext(), UPCOMING_GRID_SPAN_COUNT)
+            adapter = UpcomingListAdapter(this@UpcomingListFragment)
+            addOnScrollListener(
+                object : RecyclerView.OnScrollListener() {
+                    override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                        super.onScrollStateChanged(recyclerView, newState)
+                        if (!recyclerView.canScrollVertically(1)) {
+                            moviesViewModel.loadMoreUpcomingMovies()
+                        }
+                    }
+                }
+            )
+        }
     }
 }

@@ -4,5 +4,5 @@ import com.guerrero.upcomingmovies.shared.Movie
 
 interface MoviesRepository {
 
-    suspend fun getUpcomingList(apiKey: String): List<Movie>
+    suspend fun getUpcomingList(page: Int): List<Movie>
 }

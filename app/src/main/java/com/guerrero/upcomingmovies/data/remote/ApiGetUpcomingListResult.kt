@@ -6,7 +6,9 @@ import com.guerrero.upcomingmovies.shared.Movie
 
 data class ApiGetUpcomingListResult(
     @SerializedName("results")
-    private val results: List<ApiMovie>
+    private val results: List<ApiMovie>,
+    @SerializedName("total_pages")
+    val totalPages: Int
 ) {
 
     fun toAppMovies(): List<Movie> {

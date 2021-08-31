@@ -12,12 +12,13 @@ class UpcomingMovieViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(movie: Movie, listener: UpcomingMovieClickListener) {
-        Glide
-            .with(itemView.context)
-            .load("$IMAGES_BASE_URL${movie.posterPath}")
-            .placeholder(R.drawable.ic_baseline_local_movies)
-            .into(binding.poster)
-
+        if (movie.posterPath != null) {
+            Glide
+                .with(itemView.context)
+                .load("$IMAGES_BASE_URL${movie.posterPath}")
+                .placeholder(R.drawable.ic_baseline_local_movies)
+                .into(binding.poster)
+        }
         with(binding) {
             title.text = movie.title
             releaseDate.text = movie.releaseDate

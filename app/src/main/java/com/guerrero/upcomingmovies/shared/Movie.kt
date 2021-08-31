@@ -8,7 +8,7 @@ data class Movie(
     val id: Long,
     val title: String,
     val releaseDate: String,
-    val posterPath: String,
+    val posterPath: String?,
     val overview: String,
     val popularity: Double
 ) : Parcelable

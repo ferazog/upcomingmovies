@@ -42,7 +42,7 @@ class MovieDetailsFragment : Fragment() {
 
     private fun observeMovieDetails() {
         moviesViewModel.getMovieDetailsObservable().observe(viewLifecycleOwner, { movie ->
-            loadPosterInToolbar(movie.posterPath)
+            movie.posterPath?.let { loadPosterInToolbar(it) }
             with(binding) {
                 collapsingToolbarLayout.title = movie.title
                 overview.text = movie.overview

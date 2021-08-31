@@ -11,7 +11,7 @@ data class ApiMovie(
     @SerializedName("release_date")
     private val releaseDate: String,
     @SerializedName("poster_path")
-    private val posterPath: String,
+    private val posterPath: String?,
     @SerializedName("overview")
     private val overview: String,
     @SerializedName("popularity")
