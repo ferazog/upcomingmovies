@@ -6,19 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.guerrero.upcomingmovies.R
 import com.guerrero.upcomingmovies.databinding.FragmentUpcomingListBinding
 import com.guerrero.upcomingmovies.movies.MoviesViewModel
 import com.guerrero.upcomingmovies.shared.Movie
 import com.guerrero.upcomingmovies.shared.UPCOMING_GRID_SPAN_COUNT
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class UpcomingListFragment : Fragment(), UpcomingMovieClickListener {
 
     private lateinit var binding: FragmentUpcomingListBinding
 
-    private val moviesViewModel: MoviesViewModel by viewModel()
+    private val moviesViewModel: MoviesViewModel by sharedViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,13 +63,6 @@ class UpcomingListFragment : Fragment(), UpcomingMovieClickListener {
         moviesViewModel.getUpcomingListObservable().observe(viewLifecycleOwner, { upcomingList ->
             binding.upcomingListRecyclerView.run {
                 layoutManager = GridLayoutManager(requireContext(), UPCOMING_GRID_SPAN_COUNT)
-                /*addItemDecoration(
-                    MarginItemDecoration(
-                        spaceSize = resources.getDimensionPixelSize(R.dimen.margin_normal),
-                        spanCount = UPCOMING_GRID_SPAN_COUNT
-                    )
-
-                )*/
                 adapter = UpcomingListAdapter(this@UpcomingListFragment).apply {
                     submitList(upcomingList)
                 }
@@ -78,6 +71,8 @@ class UpcomingListFragment : Fragment(), UpcomingMovieClickListener {
     }
 
     override fun onUpcomingMovieClicked(movie: Movie) {
-
+        val action = UpcomingListFragmentDirections
+            .actionUpcomingListFragmentToMovieDetailsFragment(movie.id)
+        view?.findNavController()?.navigate(action)
     }
 }

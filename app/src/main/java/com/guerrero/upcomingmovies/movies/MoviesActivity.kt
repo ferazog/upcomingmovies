@@ -3,6 +3,7 @@ package com.guerrero.upcomingmovies.movies
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.guerrero.upcomingmovies.R
@@ -18,15 +19,30 @@ class MoviesActivity : AppCompatActivity() {
 
     private val authenticationViewModel: AuthenticationViewModel by viewModel()
 
+    private val moviesViewModel: MoviesViewModel by viewModel()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMoviesBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        NavigationUI.setupActionBarWithNavController(
-            this,
-            findNavController(R.id.nav_host_fragment)
-        )
+        findNavController(R.id.nav_host_fragment).let { navController ->
+            NavigationUI.setupActionBarWithNavController(
+                this,
+                navController
+            )
+            setupDestinationChangeListener(navController)
+        }
         observeAuthState()
+    }
+
+    private fun setupDestinationChangeListener(navController: NavController) {
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == R.id.movieDetailsFragment) {
+                supportActionBar?.hide()
+            } else {
+                supportActionBar?.show()
+            }
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

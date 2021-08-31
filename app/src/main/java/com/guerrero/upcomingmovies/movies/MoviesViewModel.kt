@@ -30,11 +30,15 @@ class MoviesViewModel(
         value = UpcomingListEvent.Normal
     }
 
+    private val movieDetails = MutableLiveData<Movie>()
+
     fun getWatchListObservable(): LiveData<List<Movie>> = watchList
 
     fun getUpcomingListObservable(): LiveData<List<Movie>> = upcomingList
 
     fun getUpcomingListEventObservable(): LiveData<UpcomingListEvent> = upcomingListEvent
+
+    fun getMovieDetailsObservable(): LiveData<Movie> = movieDetails
 
     fun requestUpcomingList(apiKey: String) {
         upcomingListEvent.value = UpcomingListEvent.Loading
@@ -47,5 +51,10 @@ class MoviesViewModel(
                 exception.printStackTrace()
             }
         }
+    }
+
+    fun requestMovie(movieId: Long) {
+        val found = upcomingList.value?.firstOrNull { it.id == movieId } ?: return
+        movieDetails.value = found
     }
 }
