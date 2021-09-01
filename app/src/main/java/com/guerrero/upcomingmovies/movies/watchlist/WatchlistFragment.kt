@@ -7,11 +7,15 @@ import androidx.navigation.findNavController
 import com.firebase.ui.auth.AuthUI
 import com.guerrero.upcomingmovies.R
 import com.guerrero.upcomingmovies.databinding.FragmentWatchlistBinding
+import com.guerrero.upcomingmovies.movies.MoviesViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
 class WatchlistFragment : Fragment() {
 
     private lateinit var binding: FragmentWatchlistBinding
+
+    private val moviesViewModel: MoviesViewModel by sharedViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,6 +33,7 @@ class WatchlistFragment : Fragment() {
                 WatchlistFragmentDirections.actionWatchlistFragmentToUpcomingListFragment()
             )
         }
+        setupRecyclerList()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -43,5 +48,9 @@ class WatchlistFragment : Fragment() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun setupRecyclerList() {
+
     }
 }

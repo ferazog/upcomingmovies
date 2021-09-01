@@ -1,11 +1,14 @@
 package com.guerrero.upcomingmovies
 
 import android.app.Application
+import androidx.room.Room
 import com.guerrero.upcomingmovies.authentication.AuthenticationViewModel
 import com.guerrero.upcomingmovies.data.ProductionMoviesRepository
+import com.guerrero.upcomingmovies.data.local.MoviesDatabase
 import com.guerrero.upcomingmovies.data.remote.MoviesService
 import com.guerrero.upcomingmovies.movies.MoviesViewModel
 import com.guerrero.upcomingmovies.shared.BASE_URL
+import com.guerrero.upcomingmovies.shared.DATABASE_NAME
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
@@ -23,9 +26,8 @@ class MyApp : Application() {
             viewModel {
                 MoviesViewModel(
                     repository = ProductionMoviesRepository(
-                        (get() as Retrofit).create(
-                            MoviesService::class.java
-                        )
+                        (get() as Retrofit).create(MoviesService::class.java),
+                        (get() as MoviesDatabase).moviesDao
                     )
                 )
             }
@@ -34,6 +36,13 @@ class MyApp : Application() {
                     .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
+            }
+            single {
+                Room.databaseBuilder(
+                    get(),
+                    MoviesDatabase::class.java,
+                    DATABASE_NAME
+                ).build()
             }
         }
 

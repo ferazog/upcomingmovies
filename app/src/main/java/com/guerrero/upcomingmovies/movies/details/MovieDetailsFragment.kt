@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
@@ -38,6 +39,8 @@ class MovieDetailsFragment : Fragment() {
         observeMovieDetails()
         moviesViewModel.requestMovie(args.movieId)
         setupBackNavigation()
+        setupAddToWatchlistButton()
+        observeAddToWatchlistEvent()
     }
 
     private fun observeMovieDetails() {
@@ -70,5 +73,33 @@ class MovieDetailsFragment : Fragment() {
         binding.toolbar.setNavigationOnClickListener {
             it.findNavController().popBackStack()
         }
+    }
+
+    private fun setupAddToWatchlistButton() {
+        binding.btnAddToWatchlist.setOnClickListener {
+            moviesViewModel.addToWatchlist()
+        }
+    }
+
+    private fun observeAddToWatchlistEvent() {
+        moviesViewModel.getAddToWatchlistEventObservable().observe(viewLifecycleOwner, { event ->
+            when (event) {
+                AddToWatchlistEvent.Adding -> {
+                    binding.run {
+                        btnAddToWatchlist.visibility = View.GONE
+                        addingToWatchlistProgressBar.visibility = View.VISIBLE
+                    }
+                }
+                AddToWatchlistEvent.Success -> {
+                    binding.run {
+                        btnAddToWatchlist.visibility = View.VISIBLE
+                        addingToWatchlistProgressBar.visibility = View.GONE
+                        Toast.makeText(requireContext(), R.string.movie_added, Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                    moviesViewModel.clearAddToWatchlistEvent()
+                }
+            }
+        })
     }
 }

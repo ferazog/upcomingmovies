@@ -1,5 +1,7 @@
 package com.guerrero.upcomingmovies.data
 
+import com.guerrero.upcomingmovies.data.local.MovieEntity
+import com.guerrero.upcomingmovies.data.local.MoviesDao
 import com.guerrero.upcomingmovies.data.remote.MoviesService
 import com.guerrero.upcomingmovies.shared.Movie
 import com.guerrero.upcomingmovies.shared.exceptions.ReachedEndPageException
@@ -7,7 +9,8 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class ProductionMoviesRepository(
-    private val remoteDataSource: MoviesService
+    private val remoteDataSource: MoviesService,
+    private val localDataSource: MoviesDao
 ) : MoviesRepository {
 
     private var totalPages = 0
@@ -30,5 +33,15 @@ class ProductionMoviesRepository(
             .parse(text)
             .time
         return releaseDateTime >= System.currentTimeMillis()
+    }
+
+    override suspend fun addToWatchlist(movie: Movie) {
+        localDataSource.insertMovie(MovieEntity(movie))
+    }
+
+    override suspend fun getWatchlist(): List<Movie> {
+        return localDataSource.getWatchlist().map {
+            it.toMovie()
+        }
     }
 }

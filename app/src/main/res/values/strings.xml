@@ -17,4 +17,6 @@
     <string name="overview">Overview</string>
     <string name="popularity">Popularity</string>
     <string name="popularity_label">Popularity:</string>
+    <string name="add_to_watchlist">Add to watchlist</string>
+    <string name="movie_added">Movide added to watchlist!</string>
 </resources>

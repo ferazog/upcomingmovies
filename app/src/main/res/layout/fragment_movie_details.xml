@@ -143,6 +143,27 @@
                 app:layout_constraintTop_toBottomOf="@id/releaseDate"
                 tools:text="100" />
 
+            <Button
+                android:id="@+id/btnAddToWatchlist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_large"
+                android:drawableLeft="@drawable/ic_add_to_watchlist"
+                android:drawableTint="@color/white"
+                android:text="@string/add_to_watchlist"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/popularity" />
+
+            <ProgressBar
+                android:id="@+id/addingToWatchlistProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_large"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/popularity" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
