@@ -3,6 +3,7 @@ package com.guerrero.upcomingmovies
 import android.app.Application
 import androidx.room.Room
 import com.guerrero.upcomingmovies.authentication.AuthenticationViewModel
+import com.guerrero.upcomingmovies.data.MoviesRepository
 import com.guerrero.upcomingmovies.data.ProductionMoviesRepository
 import com.guerrero.upcomingmovies.data.local.MoviesDatabase
 import com.guerrero.upcomingmovies.data.remote.MoviesService
@@ -15,6 +16,7 @@ import org.koin.core.context.startKoin
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
 
 class MyApp : Application() {
 
@@ -25,10 +27,7 @@ class MyApp : Application() {
             viewModel { AuthenticationViewModel() }
             viewModel {
                 MoviesViewModel(
-                    repository = ProductionMoviesRepository(
-                        (get() as Retrofit).create(MoviesService::class.java),
-                        (get() as MoviesDatabase).moviesDao
-                    )
+                    repository = get()
                 )
             }
             single {
@@ -43,6 +42,12 @@ class MyApp : Application() {
                     MoviesDatabase::class.java,
                     DATABASE_NAME
                 ).build()
+            }
+            factory {
+                ProductionMoviesRepository(
+                    (get() as Retrofit).create(MoviesService::class.java),
+                    (get() as MoviesDatabase).moviesDao
+                )
             }
         }
 

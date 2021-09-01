@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.guerrero.upcomingmovies.R
 import com.guerrero.upcomingmovies.databinding.FragmentUpcomingListBinding
 import com.guerrero.upcomingmovies.movies.MovieClickListener
 import com.guerrero.upcomingmovies.movies.MoviesViewModel
@@ -84,6 +85,11 @@ class UpcomingListFragment : Fragment(), MovieClickListener {
                     override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                         super.onScrollStateChanged(recyclerView, newState)
                         if (!recyclerView.canScrollVertically(1)) {
+                            Toast.makeText(
+                                requireContext(),
+                                R.string.getting_more_movies,
+                                Toast.LENGTH_SHORT
+                            ).show()
                             moviesViewModel.loadMoreUpcomingMovies()
                         }
                     }

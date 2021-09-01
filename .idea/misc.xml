@@ -8,6 +8,7 @@
         <entry key="app/src/main/res/drawable/ic_movie.xml" value="0.1359375" />
         <entry key="app/src/main/res/layout/activity_authentication.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.10572916666666667" />
+        <entry key="app/src/main/res/layout/activity_movie_details.xml" value="0.1" />
         <entry key="app/src/main/res/layout/details_layout_header.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_movie_details.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_upcoming_list.xml" value="0.15" />

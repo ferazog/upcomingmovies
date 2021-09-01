@@ -26,6 +26,17 @@
             android:exported="true">
 
         </activity>
+
+        <activity
+            android:name=".movies.details.MovieDetailsActivity"
+            android:exported="true">
+
+        </activity>
+
+        <receiver
+            android:name=".notifications.AlarmReceiver"
+            android:enabled="true"
+            android:exported="true" />
     </application>
 
 </manifest>

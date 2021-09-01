@@ -9,4 +9,6 @@ interface MoviesRepository {
     suspend fun addToWatchlist(movie: Movie)
 
     suspend fun getWatchlist(): List<Movie>
+
+    suspend fun getWatchlistMoviesForToday(): List<Movie>
 }

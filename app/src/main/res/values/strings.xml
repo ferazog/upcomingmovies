@@ -19,4 +19,6 @@
     <string name="popularity_label">Popularity:</string>
     <string name="add_to_watchlist">Add to watchlist</string>
     <string name="movie_added">Movide added to watchlist!</string>
+    <string name="getting_more_movies">Getting more movies…</string>
+    <string name="releasing">It\'s releasing today!</string>
 </resources>

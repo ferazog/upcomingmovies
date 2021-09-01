@@ -11,6 +11,7 @@ import com.guerrero.upcomingmovies.authentication.AuthenticationActivity
 import com.guerrero.upcomingmovies.authentication.AuthenticationState
 import com.guerrero.upcomingmovies.authentication.AuthenticationViewModel
 import com.guerrero.upcomingmovies.databinding.ActivityMoviesBinding
+import com.guerrero.upcomingmovies.shared.setupDailyAlarm
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MoviesActivity : AppCompatActivity() {
@@ -33,6 +34,7 @@ class MoviesActivity : AppCompatActivity() {
             setupDestinationChangeListener(navController)
         }
         observeAuthState()
+        setupDailyAlarm(this)
     }
 
     private fun setupDestinationChangeListener(navController: NavController) {

@@ -23,16 +23,7 @@ class ProductionMoviesRepository(
         if (totalPages == 0) {
             totalPages = result.totalPages
         }
-        return result.toAppMovies().filter {
-            isReleaseDateGreaterThanToday(it.releaseDate)
-        }
-    }
-
-    private fun isReleaseDateGreaterThanToday(text: String): Boolean {
-        val releaseDateTime = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-            .parse(text)
-            .time
-        return releaseDateTime >= System.currentTimeMillis()
+        return result.toAppMovies()
     }
 
     override suspend fun addToWatchlist(movie: Movie) {
@@ -43,5 +34,20 @@ class ProductionMoviesRepository(
         return localDataSource.getWatchlist().map {
             it.toMovie()
         }
+    }
+
+    override suspend fun getWatchlistMoviesForToday(): List<Movie> {
+        return localDataSource.getWatchlist().filter {
+            isReleasingTodayOrBefore(it.releaseDate)
+        }.map {
+            it.toMovie()
+        }
+    }
+
+    private fun isReleasingTodayOrBefore(text: String): Boolean {
+        val releaseDateTime = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            .parse(text)
+            .time
+        return releaseDateTime <= System.currentTimeMillis()
     }
 }
