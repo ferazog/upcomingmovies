@@ -1,20 +1,20 @@
-package com.guerrero.upcomingmovies.movies.upcominglist
+package com.guerrero.upcomingmovies.movies.watchlist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.guerrero.upcomingmovies.databinding.UpcomingMovieLayoutBinding
+import com.guerrero.upcomingmovies.databinding.WatchlistMovieLayoutBinding
 import com.guerrero.upcomingmovies.movies.MovieClickListener
 import com.guerrero.upcomingmovies.shared.Movie
 
-class UpcomingListAdapter(
+class WatchlistAdapter(
     private val listener: MovieClickListener
-) : ListAdapter<Movie, UpcomingMovieViewHolder>(DiffCallBack) {
+) : ListAdapter<Movie, WatchlistItemViewHolder>(DiffCallBack) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UpcomingMovieViewHolder {
-        return UpcomingMovieViewHolder(
-            UpcomingMovieLayoutBinding.inflate(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WatchlistItemViewHolder {
+        return WatchlistItemViewHolder(
+            WatchlistMovieLayoutBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -22,7 +22,7 @@ class UpcomingListAdapter(
         )
     }
 
-    override fun onBindViewHolder(holder: UpcomingMovieViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: WatchlistItemViewHolder, position: Int) {
         holder.bind(
             getItem(position),
             listener

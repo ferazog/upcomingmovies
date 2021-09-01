@@ -94,4 +94,10 @@ class MoviesViewModel(
     fun clearAddToWatchlistEvent() {
         addToWatchlistEvent.value = AddToWatchlistEvent.Normal
     }
+
+    fun getWatchlist() {
+        viewModelScope.launch(dispatcher) {
+            watchList.postValue(repository.getWatchlist())
+        }
+    }
 }

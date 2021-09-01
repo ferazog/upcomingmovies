@@ -10,12 +10,13 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.guerrero.upcomingmovies.databinding.FragmentUpcomingListBinding
+import com.guerrero.upcomingmovies.movies.MovieClickListener
 import com.guerrero.upcomingmovies.movies.MoviesViewModel
 import com.guerrero.upcomingmovies.shared.Movie
 import com.guerrero.upcomingmovies.shared.UPCOMING_GRID_SPAN_COUNT
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
-class UpcomingListFragment : Fragment(), UpcomingMovieClickListener {
+class UpcomingListFragment : Fragment(), MovieClickListener {
 
     private lateinit var binding: FragmentUpcomingListBinding
 
@@ -68,7 +69,7 @@ class UpcomingListFragment : Fragment(), UpcomingMovieClickListener {
         })
     }
 
-    override fun onUpcomingMovieClicked(movie: Movie) {
+    override fun onMovieClicked(movie: Movie) {
         val action = UpcomingListFragmentDirections
             .actionUpcomingListFragmentToMovieDetailsFragment(movie.id)
         view?.findNavController()?.navigate(action)
