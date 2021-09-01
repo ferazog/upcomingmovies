@@ -65,11 +65,13 @@ class WatchlistFragment : Fragment(), MovieClickListener {
     }
 
     private fun observeWatchList() {
-        moviesViewModel.getWatchListObservable().observe(viewLifecycleOwner, {
-            with(binding) {
-                (watchlistRecyclerView.adapter as WatchlistAdapter).submitList(it)
-                noMoviesImage.visibility = View.GONE
-                noMoviesText.visibility = View.GONE
+        moviesViewModel.getWatchListObservable().observe(viewLifecycleOwner, { watchlist ->
+            if (watchlist.isNotEmpty()) {
+                with(binding) {
+                    (watchlistRecyclerView.adapter as WatchlistAdapter).submitList(watchlist)
+                    noMoviesImage.visibility = View.GONE
+                    noMoviesText.visibility = View.GONE
+                }
             }
         })
     }

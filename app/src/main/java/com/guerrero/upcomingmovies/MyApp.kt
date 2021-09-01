@@ -47,7 +47,7 @@ class MyApp : Application() {
                 ProductionMoviesRepository(
                     (get() as Retrofit).create(MoviesService::class.java),
                     (get() as MoviesDatabase).moviesDao
-                )
+                ) as MoviesRepository
             }
         }
 
