@@ -48,3 +48,24 @@ web_api_key = yourApiKey
 - Send a notification when movies added to the watchlist reach the release date.
 - When the notification is clicked the movie details screen is displayed.
 <img src="https://user-images.githubusercontent.com/34697638/131879433-1527a57d-2ba8-449c-9471-f92b0ccb4469.gif" width="200">
+
+# Architecture
+* MVVM
+* Repository Pattern
+
+# Libraries
+* Koin
+* Firebase Auth
+* Firebase Auth UI
+* LiveData
+* Jetpack Navigation
+* Retrofit
+* Gson Converter
+* Glide
+* Glide Transformations
+* Room
+* Coroutines
+* Constraint Layout
+* Coodinator Layout
+* List Adapter
+* Diff Util
