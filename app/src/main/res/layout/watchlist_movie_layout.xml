@@ -49,8 +49,8 @@
 
         <ImageView
             android:id="@+id/calendarIcon"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
+            android:layout_width="@dimen/calendar_icon_width"
+            android:layout_height="@dimen/calendar_icon_height"
             android:layout_marginStart="@dimen/margin_small"
             android:contentDescription="@string/release_date"
             android:src="@drawable/ic_calendar"

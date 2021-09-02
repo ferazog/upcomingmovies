@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/noMoviesImage"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
+        android:layout_width="@dimen/no_movie_image_width"
+        android:layout_height="@dimen/no_movie_image_height"
         android:contentDescription="@string/no_movies"
         android:src="@drawable/ic_baseline_local_movies"
         app:layout_constraintBottom_toTopOf="@id/noMoviesText"

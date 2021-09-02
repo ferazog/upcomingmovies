@@ -16,6 +16,7 @@ import com.guerrero.upcomingmovies.movies.MoviesViewModel
 import com.guerrero.upcomingmovies.movies.details.MovieDetailsActivity
 import com.guerrero.upcomingmovies.shared.Movie
 import com.guerrero.upcomingmovies.shared.PARAM_MOVIE
+import com.guerrero.upcomingmovies.shared.SCROLLING_DOWN
 import com.guerrero.upcomingmovies.shared.UPCOMING_GRID_SPAN_COUNT
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
@@ -87,7 +88,7 @@ class UpcomingListFragment : Fragment(), MovieClickListener {
                 object : RecyclerView.OnScrollListener() {
                     override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                         super.onScrollStateChanged(recyclerView, newState)
-                        if (!recyclerView.canScrollVertically(1)) {
+                        if (!recyclerView.canScrollVertically(SCROLLING_DOWN)) {
                             Toast.makeText(
                                 requireContext(),
                                 R.string.getting_more_movies,

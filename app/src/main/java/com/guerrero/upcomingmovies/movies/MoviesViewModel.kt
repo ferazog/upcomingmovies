@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.guerrero.upcomingmovies.data.MoviesRepository
 import com.guerrero.upcomingmovies.movies.upcominglist.UpcomingListEvent
+import com.guerrero.upcomingmovies.shared.INIT_PAGE
 import com.guerrero.upcomingmovies.shared.Movie
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -34,7 +35,7 @@ class MoviesViewModel(
 
     fun getUpcomingListEventObservable(): LiveData<UpcomingListEvent> = upcomingListEvent
 
-    private var requestPage = 1
+    private var requestPage = INIT_PAGE
 
     init {
         requestUpcomingList()
@@ -44,7 +45,7 @@ class MoviesViewModel(
         upcomingListEvent.value = UpcomingListEvent.Loading
         viewModelScope.launch(dispatcher) {
             try {
-                upcomingList.postValue(repository.getUpcomingList(1))
+                upcomingList.postValue(repository.getUpcomingList(INIT_PAGE))
                 upcomingListEvent.postValue(UpcomingListEvent.Normal)
             } catch (exception: Exception) {
                 upcomingListEvent.postValue(UpcomingListEvent.Failed(exception.message.toString()))
