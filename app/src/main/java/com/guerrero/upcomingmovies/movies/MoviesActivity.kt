@@ -31,20 +31,9 @@ class MoviesActivity : AppCompatActivity() {
                 this,
                 navController
             )
-            setupDestinationChangeListener(navController)
         }
         observeAuthState()
         setupDailyAlarm(this)
-    }
-
-    private fun setupDestinationChangeListener(navController: NavController) {
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (destination.id == R.id.movieDetailsFragment) {
-                supportActionBar?.hide()
-            } else {
-                supportActionBar?.show()
-            }
-        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

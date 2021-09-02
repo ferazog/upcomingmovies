@@ -32,7 +32,7 @@ fun sendNotification(context: Context, movie: Movie) {
     }
 
     val intent = Intent(context.applicationContext, MovieDetailsActivity::class.java).apply {
-        putExtra(PARAM_MOVIE_ID, movie.id)
+        putExtra(PARAM_MOVIE, movie)
     }
     val stackBuilder = TaskStackBuilder.create(context)
         .addParentStack(MovieDetailsActivity::class.java)

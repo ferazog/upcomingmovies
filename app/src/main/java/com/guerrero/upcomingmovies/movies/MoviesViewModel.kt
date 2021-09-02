@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.guerrero.upcomingmovies.data.MoviesRepository
-import com.guerrero.upcomingmovies.movies.details.AddToWatchlistEvent
 import com.guerrero.upcomingmovies.movies.upcominglist.UpcomingListEvent
 import com.guerrero.upcomingmovies.shared.Movie
 import kotlinx.coroutines.CoroutineDispatcher
@@ -29,21 +28,11 @@ class MoviesViewModel(
         value = UpcomingListEvent.Normal
     }
 
-    private val movieDetails = MutableLiveData<Movie>()
-
-    private val addToWatchlistEvent = MutableLiveData<AddToWatchlistEvent>().apply {
-        value = AddToWatchlistEvent.Normal
-    }
-
     fun getWatchListObservable(): LiveData<List<Movie>> = watchList
 
     fun getUpcomingListObservable(): LiveData<List<Movie>> = upcomingList
 
     fun getUpcomingListEventObservable(): LiveData<UpcomingListEvent> = upcomingListEvent
-
-    fun getMovieDetailsObservable(): LiveData<Movie> = movieDetails
-
-    fun getAddToWatchlistEventObservable(): LiveData<AddToWatchlistEvent> = addToWatchlistEvent
 
     private var requestPage = 1
 
@@ -64,11 +53,6 @@ class MoviesViewModel(
         }
     }
 
-    fun requestMovie(movieId: Long) {
-        val found = upcomingList.value?.firstOrNull { it.id == movieId } ?: return
-        movieDetails.value = found
-    }
-
     fun loadMoreUpcomingMovies() {
         requestPage += 1
         viewModelScope.launch(dispatcher) {
@@ -80,19 +64,6 @@ class MoviesViewModel(
                 exception.printStackTrace()
             }
         }
-    }
-
-    fun addToWatchlist() {
-        val movie = movieDetails.value ?: return
-        addToWatchlistEvent.value = AddToWatchlistEvent.Adding
-        viewModelScope.launch(dispatcher) {
-            repository.addToWatchlist(movie)
-            addToWatchlistEvent.postValue(AddToWatchlistEvent.Success)
-        }
-    }
-
-    fun clearAddToWatchlistEvent() {
-        addToWatchlistEvent.value = AddToWatchlistEvent.Normal
     }
 
     fun getWatchlist() {

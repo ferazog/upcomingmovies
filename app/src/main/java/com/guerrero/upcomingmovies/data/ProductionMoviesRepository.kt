@@ -3,6 +3,7 @@ package com.guerrero.upcomingmovies.data
 import com.guerrero.upcomingmovies.data.local.MovieEntity
 import com.guerrero.upcomingmovies.data.local.MoviesDao
 import com.guerrero.upcomingmovies.data.remote.MoviesService
+import com.guerrero.upcomingmovies.shared.API_DATE_FORMAT
 import com.guerrero.upcomingmovies.shared.Movie
 import com.guerrero.upcomingmovies.shared.exceptions.ReachedEndPageException
 import java.text.SimpleDateFormat
@@ -45,7 +46,7 @@ class ProductionMoviesRepository(
     }
 
     private fun isReleasingTodayOrBefore(text: String): Boolean {
-        val releaseDateTime = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val releaseDateTime = SimpleDateFormat(API_DATE_FORMAT, Locale.getDefault())
             .parse(text)
             .time
         return releaseDateTime <= System.currentTimeMillis()

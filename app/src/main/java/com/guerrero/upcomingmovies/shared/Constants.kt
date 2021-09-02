@@ -6,4 +6,5 @@ const val SIGN_IN_RESULT_CODE = 1001
 const val UPCOMING_GRID_SPAN_COUNT = 2
 const val DATABASE_NAME = "movies_database"
 const val NOTIFICATION_CHANNEL_ID = "com.guerrero.upcomingmovies.notificationchannel"
-const val PARAM_MOVIE_ID = "PARAM_MOVIE_ID"
+const val PARAM_MOVIE = "PARAM_MOVIE"
+const val API_DATE_FORMAT = "yyyy-MM-dd"

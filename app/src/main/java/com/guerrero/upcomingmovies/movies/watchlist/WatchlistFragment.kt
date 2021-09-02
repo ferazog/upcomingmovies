@@ -1,5 +1,6 @@
 package com.guerrero.upcomingmovies.movies.watchlist
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -9,7 +10,9 @@ import com.guerrero.upcomingmovies.R
 import com.guerrero.upcomingmovies.databinding.FragmentWatchlistBinding
 import com.guerrero.upcomingmovies.movies.MovieClickListener
 import com.guerrero.upcomingmovies.movies.MoviesViewModel
+import com.guerrero.upcomingmovies.movies.details.MovieDetailsActivity
 import com.guerrero.upcomingmovies.shared.Movie
+import com.guerrero.upcomingmovies.shared.PARAM_MOVIE
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
@@ -59,9 +62,10 @@ class WatchlistFragment : Fragment(), MovieClickListener {
     }
 
     override fun onMovieClicked(movie: Movie) {
-        val action = WatchlistFragmentDirections
-            .actionWatchlistFragmentToMovieDetailsFragment(movie.id)
-        view?.findNavController()?.navigate(action)
+        val intent = Intent(requireContext(), MovieDetailsActivity::class.java).apply {
+            putExtra(PARAM_MOVIE, movie)
+        }
+        startActivity(intent)
     }
 
     private fun observeWatchList() {

@@ -8,6 +8,7 @@ import com.guerrero.upcomingmovies.data.ProductionMoviesRepository
 import com.guerrero.upcomingmovies.data.local.MoviesDatabase
 import com.guerrero.upcomingmovies.data.remote.MoviesService
 import com.guerrero.upcomingmovies.movies.MoviesViewModel
+import com.guerrero.upcomingmovies.movies.details.MovieDetailsViewModel
 import com.guerrero.upcomingmovies.shared.BASE_URL
 import com.guerrero.upcomingmovies.shared.DATABASE_NAME
 import org.koin.android.ext.koin.androidContext
@@ -25,11 +26,8 @@ class MyApp : Application() {
 
         val myModule = module {
             viewModel { AuthenticationViewModel() }
-            viewModel {
-                MoviesViewModel(
-                    repository = get()
-                )
-            }
+            viewModel { MoviesViewModel(repository = get()) }
+            viewModel { MovieDetailsViewModel(repository = get()) }
             single {
                 Retrofit.Builder()
                     .baseUrl(BASE_URL)

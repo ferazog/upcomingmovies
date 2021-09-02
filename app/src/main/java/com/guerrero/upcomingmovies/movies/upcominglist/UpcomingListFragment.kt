@@ -1,19 +1,21 @@
 package com.guerrero.upcomingmovies.movies.upcominglist
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.guerrero.upcomingmovies.R
 import com.guerrero.upcomingmovies.databinding.FragmentUpcomingListBinding
 import com.guerrero.upcomingmovies.movies.MovieClickListener
 import com.guerrero.upcomingmovies.movies.MoviesViewModel
+import com.guerrero.upcomingmovies.movies.details.MovieDetailsActivity
 import com.guerrero.upcomingmovies.shared.Movie
+import com.guerrero.upcomingmovies.shared.PARAM_MOVIE
 import com.guerrero.upcomingmovies.shared.UPCOMING_GRID_SPAN_COUNT
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
@@ -71,9 +73,10 @@ class UpcomingListFragment : Fragment(), MovieClickListener {
     }
 
     override fun onMovieClicked(movie: Movie) {
-        val action = UpcomingListFragmentDirections
-            .actionUpcomingListFragmentToMovieDetailsFragment(movie.id)
-        view?.findNavController()?.navigate(action)
+        val intent = Intent(requireContext(), MovieDetailsActivity::class.java).apply {
+            putExtra(PARAM_MOVIE, movie)
+        }
+        startActivity(intent)
     }
 
     private fun setupUpcomingListRecyclerView() {
