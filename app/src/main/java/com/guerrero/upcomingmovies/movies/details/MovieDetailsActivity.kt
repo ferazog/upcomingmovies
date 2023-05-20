@@ -94,6 +94,8 @@ class MovieDetailsActivity : AppCompatActivity() {
                     }
                     viewModel.clearAddToWatchlistEvent()
                 }
+
+                else -> {}
             }
         })
     }

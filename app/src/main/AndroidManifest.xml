@@ -13,7 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UpcomingMovies">
 
-        <activity android:name=".authentication.AuthenticationActivity">
+        <activity
+            android:name=".authentication.AuthenticationActivity"
+            android:exported="true"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,7 +40,7 @@
         <receiver
             android:name=".notifications.AlarmReceiver"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="true"/>
     </application>
 
 </manifest>
