@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
     <application
         android:name=".MyApp"
         android:allowBackup="true"
@@ -14,20 +16,13 @@
         android:theme="@style/Theme.UpcomingMovies">
 
         <activity
-            android:name=".authentication.AuthenticationActivity"
-            android:exported="true"
-            >
+            android:name=".movies.MoviesActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".movies.MoviesActivity"
-            android:exported="true">
-
         </activity>
 
         <activity

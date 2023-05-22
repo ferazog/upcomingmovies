@@ -11,8 +11,6 @@ import com.guerrero.upcomingmovies.movies.details.MovieDetailsActivity
 import com.guerrero.upcomingmovies.notifications.AlarmReceiver
 import java.util.*
 
-fun Activity.getTag() = this::class.simpleName
-
 fun sendNotification(context: Context, movie: Movie) {
     val notificationManager = context.getSystemService(
         Context.NOTIFICATION_SERVICE
@@ -59,7 +57,7 @@ fun setupDailyAlarm(context: Context) {
         context,
         0,
         intent,
-        PendingIntent.FLAG_UPDATE_CURRENT
+        PendingIntent.FLAG_IMMUTABLE
     )
 
     // Set the alarm to start at approximately 6:00 a.m.
